@@ -55,7 +55,7 @@ def getDate() {
 
 // copy file
 task CopyRename(type: Copy) {
-    from 'E:\jenkins\WorkSpace\workspace\Win8GradleTest\Win8AndroidTest\app\build\outputs\apk'
+    from 'E:/jenkins/WorkSpace/workspace/Win8GradleTest/Win8AndroidTest/app/build/outputs/apk'
     into '//cn-s-koo/Project Shared Files/WirelessScanner/test'
 	
 	// Use a closure to map the file name
