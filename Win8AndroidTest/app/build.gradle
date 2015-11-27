@@ -1,6 +1,6 @@
 import java.text.SimpleDateFormat;
 apply plugin: 'com.android.application'
-def buildTime = ""
+def buildTime = "123"
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -61,8 +61,7 @@ task CopyRename(type: Copy) {
 	
 	// Use a closure to map the file name
     rename { String fileName ->
-        fileName.replace('app-debug', ${buildTime})
-		fileName.replace('app-release', ${buildTime})
+        fileName.replace('app', '${buildTime}')
     }
 }
 
