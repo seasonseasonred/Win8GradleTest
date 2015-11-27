@@ -61,8 +61,8 @@ task CopyRename(type: Copy) {
 	
 	// Use a closure to map the file name
     rename { String fileName ->
-        fileName.replace('app-debug', '${buildTime}')
-		fileName.replace('app-release', '${buildTime}')
+        fileName.replace('app-debug', ${buildTime})
+		fileName.replace('app-release', ${buildTime})
     }
 }
 
