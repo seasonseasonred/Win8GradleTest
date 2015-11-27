@@ -53,6 +53,7 @@ def getDate() {
       return formattedDate
 }
 
+
 // copy file
 task CopyRename(type: Copy) {
     from 'E:/jenkins/WorkSpace/workspace/Win8GradleTest/Win8AndroidTest/app/build/outputs/apk'
