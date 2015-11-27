@@ -1,5 +1,5 @@
+import java.text.SimpleDateFormat;
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -11,14 +11,45 @@ android {
         versionCode 1
         versionName "1.0"
     }
+	
+	// sign
+	 signingConfigs {
+        releaseConfig {
+            storeFile file("TestSign.jks")
+            storePassword("123456")
+            keyAlias "Test"
+            keyPassword "123456"
+        }
+    }
+	
+
+	// change version				
+	defaultConfig {  
+        versionName "${getDate()}" 
+    }  
+
+	// change name
+	android.applicationVariants.all { variant ->  
+    def file = variant.outputs[0].outputFile  
+    variant.outputs[0].outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))  
+   }  
+	
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+	
+	
 }
-
+// get time
+    def getDate() {
+      def date = new Date()
+      def formattedDate = date.format('yyyyMMddHHmmss')
+      return formattedDate
+      }
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
