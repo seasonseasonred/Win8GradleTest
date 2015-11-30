@@ -55,16 +55,16 @@ def getDate() {
 
 
 // copy file
-//task CopyRename(type: Copy) {
-//    def  curTime = getDate() 
-//    from 'build/outputs/apk'
-//    into '//cn-s-koo/Project Shared Files/WirelessScanner/test/'+curTime
-//	
-//	// Use a closure to map the file name
-//    rename { String fileName ->
-//        fileName.replace('app', curTime)
-//    }
-//}
+task CopyRename(type: Copy) {
+    def  curTime = getDate() 
+    from 'build/outputs/apk'
+    into '//cn-s-koo/Project Shared Files/WirelessScanner/test/'+curTime
+	
+	// Use a closure to map the file name
+    rename { String fileName ->
+        fileName.replace('app', curTime)
+    }
+}
 
 
 
