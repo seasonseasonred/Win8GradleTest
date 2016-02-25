@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project name="Hello World" default="run">
+	<property name="basename" value="HelloWorld"/>
+	<property name="debug" value="true"/>
+	<property name="tempSubstr" value=""/>
+	<property name="GenerateFlag" value=","/>
+
+	 <script language="C#" prefix="util">  
+        <code><![CDATA[  
+            [Function("Compare-Configrue")]  
+            public static bool CompareConfigrue(string Geconfigs,string config)  
+             {  
+                int nTotalLen = Geconfigs.Length;
+                int nLenConfig = config.Length;
+                if (nTotalLen >= nLenConfig)
+               {
+                // find the flag
+                string Tempstr = Geconfigs;
+                string Tempstr2 ="";
+                int nTpos =0;
+                while (Tempstr.IndexOf(",") > 0)
+                {
+                    nTpos = Tempstr.IndexOf(",");
+                    Tempstr2 = Tempstr.Substring(0,nTpos);
+                    nTotalLen = Tempstr.Length;
+                    Tempstr = Tempstr.Substring(nTpos+1,nTotalLen-nTpos-1);
+                    if (Tempstr2.Contains(config)&&Tempstr2.Length==config.Length)
+                    {
+                        return true;
+                    }
+                }
+                if (Tempstr.Contains(config) && (Tempstr.Length == config.Length))
+                {
+                    return true;
+                }
+                
+            }
+            return false;  
+             }  
+        ]]></code>  
+          
+    </script>  
+	<target name="generate-built-configuration">
+		<if test="${util::Compare-Configrue(configurations,configuration)}">
+		    <echo message="find" />
+		</if>
+	</target>
+
+	<target name="run">
+		<property name="configuration" value="i1100" />
+		<call target="generate-built-configuration" />
+
+		<property name="configuration" value="i1200" />
+		<call target="generate-built-configuration" />
+
+		<property name="configuration" value="i11xx" />
+		<call target="generate-built-configuration" />
+
+		<property name="configuration" value="i11xxwn" />
+		<call target="generate-built-configuration" />		
+
+	</target>
+</project>
